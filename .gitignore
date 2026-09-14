@@ -1,0 +1,72 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Node dependencies & builds
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Python artifacts & environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+parts/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+
+# Database files & local storage
+*.db
+*.sqlite
+*.sqlite3
+estateflow.db
+
+# User Uploads and Media Storage
+uploads/
+storage/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# IDE & Editor files
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db

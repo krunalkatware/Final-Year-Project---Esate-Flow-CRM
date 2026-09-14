@@ -1,0 +1,572 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  [data-theme='light'],
+  .theme-light,
+  .light {
+    /* ── Premium Brand Colors (Light Theme) ───────────────────────── */
+    --primary: #1F7A68;
+    --primary-hover: #186154;
+    --primary-light: #DDEFE9;
+    --navy: #16324F;
+    --navy-light: #1F4E6B;
+    --champagne: #C6A15B;
+    --champagne-light: #F3E7D3;
+    --ivory: #F7F6F2;
+    --ivory-secondary: #F1EFE9;
+    --ivory-border: #E7E5E0;
+
+    /* ── Semantic Design Tokens ──────────────────────────────────── */
+    --background: #F7F6F2;
+    --surface: #FFFFFF;
+    --surface-secondary: #F1EFE9;
+    --card: #FFFFFF;
+    --text-primary: #1E293B;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+    --border: #E7E5E0;
+    --secondary: #1F7A68;
+    --accent: #C6A15B;
+    --success: #2F855A;
+    --warning: #D69E2E;
+    --error: #C05656;
+    --danger: #C05656;
+    --radius: 0.75rem;
+
+    /* ── Admin Panel Theme Variables (Light Mode) ─────────────────── */
+    --bg-card: #FFFFFF;
+    --bg-surface: #F7F6F2;
+    --admin-bg: #F7F6F2;
+    --admin-sidebar-bg: #FFFFFF;
+    --admin-sidebar-border: #E7E5E0;
+    --admin-sidebar-text: #475569;
+    --admin-sidebar-text-muted: #94A3B8;
+    --admin-sidebar-active-bg: #DDEFE9;
+    --admin-sidebar-active-text: #1F7A68;
+    --admin-sidebar-hover-bg: #F1EFE9;
+    --admin-sidebar-hover-text: #1F7A68;
+    --admin-card-bg: #FFFFFF;
+    --admin-card-border: #E7E5E0;
+    --admin-input-bg: #FFFFFF;
+    --admin-input-border: #E7E5E0;
+    --admin-text: #1E293B;
+    --admin-text-muted: #64748B;
+    --admin-header-bg: rgba(255, 255, 255, 0.95);
+    --admin-header-border: #E7E5E0;
+  }
+
+  /* ── Dark Mode Variables (Enterprise Deep Navy / Slate) ────────── */
+  [data-theme='dark'],
+  .theme-dark,
+  .dark,
+  html.dark {
+    /* ── Premium Brand Colors (Dark Theme) ────────────────────────── */
+    --primary: #35A88D;
+    --primary-hover: #2E957D;
+    --primary-light: rgba(53, 168, 141, 0.16);
+    --navy: #31597A;
+    --navy-light: #3E6D94;
+    --champagne: #D4B678;
+    --champagne-light: rgba(212, 182, 120, 0.16);
+    --ivory: #0F1720;
+    --ivory-secondary: #16202B;
+    --ivory-border: #2B3947;
+
+    /* ── Semantic Design Tokens ──────────────────────────────────── */
+    --background: #0F1720;
+    --surface: #16202B;
+    --surface-secondary: #1C2834;
+    --card: #18232E;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --border: #2B3947;
+    --secondary: #35A88D;
+    --accent: #D4B678;
+    --success: #34D399;
+    --warning: #FBBF24;
+    --error: #F87171;
+    --danger: #F87171;
+
+    /* ── Admin Panel Theme Variables (Dark Mode) ─────────────────── */
+    --bg-card: #18232E;
+    --bg-surface: #16202B;
+    --admin-bg: #0F1720;
+    --admin-sidebar-bg: #16202B;
+    --admin-sidebar-border: #2B3947;
+    --admin-sidebar-text: #CBD5E1;
+    --admin-sidebar-text-muted: #94A3B8;
+    --admin-sidebar-active-bg: rgba(53, 168, 141, 0.14);
+    --admin-sidebar-active-text: #35A88D;
+    --admin-sidebar-hover-bg: #1C2834;
+    --admin-sidebar-hover-text: #F8FAFC;
+    --admin-card-bg: #18232E;
+    --admin-card-border: #2B3947;
+    --admin-input-bg: #16202B;
+    --admin-input-border: #2B3947;
+    --admin-text: #F8FAFC;
+    --admin-text-muted: #94A3B8;
+    --admin-header-bg: rgba(22, 32, 43, 0.95);
+    --admin-header-border: #2B3947;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans transition-colors duration-300;
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold leading-tight;
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background: rgba(31, 122, 104, 0.15);
+    color: #1F7A68;
+  }
+
+  :focus-visible {
+    @apply outline-none;
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #1F7A68;
+  }
+
+  /* ── Premium Warm Scrollbar ───────────────────────────────────────── */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--ivory, #F7F6F2);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4D1CA;
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #BCBAB3;
+  }
+  /* Dark mode scrollbar */
+  [data-theme='dark'] ::-webkit-scrollbar-track,
+  .theme-dark ::-webkit-scrollbar-track {
+    background: #0F172A;
+  }
+  [data-theme='dark'] ::-webkit-scrollbar-thumb,
+  .theme-dark ::-webkit-scrollbar-thumb {
+    background: #334155;
+  }
+}
+
+@layer components {
+  /* ── Premium Button System ────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none;
+  }
+
+  /* PRIMARY: Emerald */
+  .btn-primary {
+    @apply btn text-white;
+    background-color: #1F7A68;
+    box-shadow: 0 2px 8px rgba(31,122,104,0.25);
+  }
+  .btn-primary:hover {
+    background-color: #186154;
+    box-shadow: 0 4px 16px rgba(31,122,104,0.30);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+
+  /* SECONDARY: White + Navy border */
+  .btn-secondary {
+    @apply btn bg-white border-2 font-semibold;
+    color: #16324F;
+    border-color: #16324F;
+    box-shadow: 0 1px 4px rgba(22,50,79,0.08);
+  }
+  .btn-secondary:hover {
+    background-color: #EBF1F7;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(22,50,79,0.12);
+  }
+
+  /* NAVY: Deep Navy for premium actions */
+  .btn-navy {
+    @apply btn text-white;
+    background-color: #16324F;
+    box-shadow: 0 2px 8px rgba(22,50,79,0.20);
+  }
+  .btn-navy:hover {
+    background-color: #12283F;
+    box-shadow: 0 4px 16px rgba(22,50,79,0.25);
+    transform: translateY(-1px);
+  }
+
+  /* GOLD: Champagne accent */
+  .btn-gold {
+    @apply btn text-white;
+    background-color: #C6A15B;
+    box-shadow: 0 2px 8px rgba(198,161,91,0.25);
+  }
+  .btn-gold:hover {
+    background-color: #A8854A;
+    box-shadow: 0 4px 16px rgba(198,161,91,0.30);
+    transform: translateY(-1px);
+  }
+
+  /* OUTLINE: Subtle outline */
+  .btn-outline {
+    @apply btn border font-medium;
+    background: var(--card);
+    color: var(--text-primary);
+    border-color: var(--border);
+    box-shadow: 0 1px 3px rgba(22,50,79,0.05);
+  }
+  .btn-outline:hover {
+    border-color: var(--primary);
+    background: var(--surface-secondary);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply btn font-medium;
+    color: var(--text-secondary);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    color: var(--text-primary);
+    background: var(--surface-secondary);
+  }
+
+  .btn-lg { @apply px-7 py-3.5 text-base rounded-xl; }
+  .btn-sm { @apply px-3.5 py-2 text-xs rounded-lg; }
+  .btn-xs { @apply px-2.5 py-1.5 text-[11px] font-semibold rounded-lg; }
+  .btn-icon { @apply btn p-2.5 rounded-xl; }
+
+  /* ── Premium Card System ──────────────────────────────────────────── */
+  .card {
+    background: var(--card);
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(22,50,79,0.06), 0 1px 3px rgba(22,50,79,0.04);
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  .card-hover {
+    @apply card;
+  }
+  .card-hover:hover {
+    box-shadow: 0 8px 24px rgba(22,50,79,0.10), 0 2px 8px rgba(22,50,79,0.06);
+    transform: translateY(-2px);
+    border-color: var(--primary);
+  }
+
+  /* Dark mode backward-compat card classes */
+  .surface-base { @apply bg-background text-text-primary; }
+  .surface-layered { @apply bg-surface border border-border rounded-2xl shadow-xl; }
+  .card-dark { @apply bg-card border border-border rounded-2xl shadow-md hover:border-primary transition-all; }
+
+  .glass-panel {
+    background: var(--card);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+  }
+  .glass {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+  }
+  .glass-dark {
+    background: rgba(22, 32, 43, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+  }
+
+  /* ── Input System ────────────────────────────────────────────────── */
+  .input {
+    @apply w-full px-4 py-3 text-sm rounded-xl transition-all duration-200;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    &::placeholder { color: var(--text-muted); }
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(31,122,104,0.14);
+    }
+    &:disabled { background: var(--surface-secondary); color: var(--text-muted); }
+  }
+  .input-error {
+    border-color: var(--error) !important;
+    &:focus { box-shadow: 0 0 0 3px rgba(192,86,86,0.14); }
+  }
+  .label { @apply block text-sm font-medium mb-1.5; color: var(--text-primary); }
+  .error-text { @apply text-xs mt-1; color: var(--error); }
+
+  /* Dark theme input override */
+  [data-theme='dark'] .input,
+  .theme-dark .input,
+  .dark .input {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+
+  /* ── Premium Badge System ────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold rounded-full;
+  }
+  .badge-primary {
+    @apply badge;
+    background: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid rgba(31,122,104,0.25);
+  }
+  .badge-success {
+    @apply badge;
+    background: #DCFCE7;
+    color: #166534;
+    border: 1px solid rgba(47,133,90,0.20);
+  }
+  .badge-warning {
+    @apply badge;
+    background: #FEF9C3;
+    color: #854D0E;
+    border: 1px solid rgba(214,158,46,0.25);
+  }
+  .badge-error {
+    @apply badge;
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid rgba(192,86,86,0.20);
+  }
+  .badge-secondary {
+    @apply badge;
+    background: var(--surface-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+  .badge-navy {
+    @apply badge;
+    background: rgba(22, 50, 79, 0.12);
+    color: var(--navy);
+    border: 1px solid rgba(22,50,79,0.18);
+  }
+  .badge-gold {
+    @apply badge;
+    background: var(--champagne-light);
+    color: #B45309;
+    border: 1px solid rgba(198,161,91,0.25);
+  }
+
+  /* Dark theme badge overrides */
+  .dark .badge-success, [data-theme='dark'] .badge-success {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34D399;
+    border-color: rgba(52, 211, 153, 0.3);
+  }
+  .dark .badge-warning, [data-theme='dark'] .badge-warning {
+    background: rgba(251, 191, 36, 0.15);
+    color: #FBBF24;
+    border-color: rgba(251, 191, 36, 0.3);
+  }
+  .dark .badge-error, [data-theme='dark'] .badge-error {
+    background: rgba(248, 113, 113, 0.15);
+    color: #F87171;
+    border-color: rgba(248, 113, 113, 0.3);
+  }
+  .dark .badge-gold, [data-theme='dark'] .badge-gold {
+    background: rgba(212, 182, 120, 0.16);
+    color: #D4B678;
+    border-color: rgba(212, 182, 120, 0.3);
+  }
+  .dark .badge-navy, [data-theme='dark'] .badge-navy {
+    background: rgba(49, 89, 122, 0.2);
+    color: #93C5FD;
+    border-color: rgba(49, 89, 122, 0.35);
+  }
+
+  /* ── Status Badges ───────────────────────────────────────────────── */
+  .status-confirmed, .status-success, .status-active {
+    background: #DCFCE7; color: #166534; border: 1px solid rgba(22,101,52,0.15);
+    @apply badge;
+  }
+  .status-pending, .status-draft, .status-scheduled {
+    background: #FEF9C3; color: #713F12; border: 1px solid rgba(113,63,18,0.15);
+    @apply badge;
+  }
+  .status-rejected, .status-cancelled, .status-failed {
+    background: #FEE2E2; color: #991B1B; border: 1px solid rgba(153,27,27,0.15);
+    @apply badge;
+  }
+  .status-review, .status-processing {
+    background: #EFF6FF; color: #1D4ED8; border: 1px solid rgba(29,78,216,0.15);
+    @apply badge;
+  }
+
+  .dark .status-confirmed, .dark .status-success, .dark .status-active,
+  [data-theme='dark'] .status-confirmed, [data-theme='dark'] .status-success, [data-theme='dark'] .status-active {
+    background: rgba(52, 211, 153, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3);
+  }
+  .dark .status-pending, .dark .status-draft, .dark .status-scheduled,
+  [data-theme='dark'] .status-pending, [data-theme='dark'] .status-draft, [data-theme='dark'] .status-scheduled {
+    background: rgba(251, 191, 36, 0.15); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3);
+  }
+  .dark .status-rejected, .dark .status-cancelled, .dark .status-failed,
+  [data-theme='dark'] .status-rejected, [data-theme='dark'] .status-cancelled, [data-theme='dark'] .status-failed {
+    background: rgba(248, 113, 113, 0.15); color: #F87171; border-color: rgba(248, 113, 113, 0.3);
+  }
+  .dark .status-review, .dark .status-processing,
+  [data-theme='dark'] .status-review, [data-theme='dark'] .status-processing {
+    background: rgba(96, 165, 250, 0.15); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3);
+  }
+
+  /* ── Typography ──────────────────────────────────────────────────── */
+  .section-title { @apply text-3xl md:text-4xl font-heading font-bold; color: var(--text-primary); }
+  .section-subtitle { @apply text-lg mt-3 max-w-2xl; color: var(--text-secondary); }
+  .gradient-text {
+    background: linear-gradient(135deg, #1F7A68 0%, #16324F 50%, #C6A15B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Skeleton & Loading ───────────────────────────────────────────── */
+  .skeleton {
+    background: linear-gradient(90deg, #F1EFE9 25%, #F7F6F2 50%, #F1EFE9 75%);
+    background-size: 400px 100%;
+    animation: shimmer 1.8s linear infinite;
+    border-radius: 8px;
+  }
+  [data-theme='dark'] .skeleton,
+  .theme-dark .skeleton {
+    background: linear-gradient(90deg, #1E293B 25%, #273549 50%, #1E293B 75%);
+    background-size: 400px 100%;
+  }
+
+  /* ── Page Layouts ────────────────────────────────────────────────── */
+  .page-wrapper { @apply min-h-screen; background: var(--background); }
+  .container-content { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .divider { @apply w-full h-px my-6; background: var(--border); }
+  .stat-card { @apply card p-6 flex flex-col gap-2; }
+
+  /* ── Admin Panel Specific ─────────────────────────────────────────── */
+  .admin-card {
+    background: var(--admin-card-bg);
+    border: 1px solid var(--admin-card-border);
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(22,50,79,0.06);
+    transition: all 0.2s ease;
+  }
+  .admin-card:hover {
+    box-shadow: 0 4px 16px rgba(22,50,79,0.10);
+    transform: translateY(-1px);
+  }
+  .admin-input {
+    background: var(--admin-input-bg);
+    border: 1px solid var(--admin-input-border);
+    color: var(--admin-text);
+    border-radius: 0.75rem;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+    transition: all 0.2s ease;
+    width: 100%;
+  }
+  .admin-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(31,122,104,0.10);
+  }
+
+  /* ── Cinematic Intro ─────────────────────────────────────────────── */
+  .cinema-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0B1728;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .cinema-overlay.exit {
+    animation: cinemaExit 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  .cinema-brand-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    letter-spacing: -0.03em;
+    color: white;
+    animation: slideUpFade 0.9s cubic-bezier(0.22,1,0.36,1) 0.4s both;
+  }
+  .cinema-tagline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    animation: slideUpFade 0.9s cubic-bezier(0.22,1,0.36,1) 0.8s both;
+  }
+
+  /* ── Custom scrollbar utility ────────────────────────────────────── */
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4D1CA; border-radius: 4px; }
+  [data-theme='dark'] .custom-scrollbar::-webkit-scrollbar-thumb,
+  .theme-dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .transition-base { @apply transition-all duration-200 ease-in-out; }
+
+  /* ── Animation Utility Classes ──────────────────────────────────────── */
+  .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+  .animate-scale-in { animation: scaleIn 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+  .animate-slide-up { animation: slideUp 0.4s ease-out; }
+
+  /* ── Navy overlay alias for Booking Wizard backdrop ─────────────────── */
+  .bg-navy-950\/75 { background-color: rgba(4, 10, 15, 0.75); }
+
+  /* ── Print Styles for Token Receipt ─────────────────────────────────── */
+  @media print {
+    body * { visibility: hidden; }
+    /* Print-safe receipt: make the receipt block visible */
+    .print-receipt,
+    .print-receipt * { visibility: visible; }
+    .print-receipt {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 2rem;
+      background: white;
+      color: black;
+    }
+    /* Hide non-essential UI during print */
+    header, nav, aside, footer, .btn, button { display: none !important; }
+  }
+}

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  estateflow-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: estateflow_production
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - SECRET_KEY=ef_live_9832749823749823749823749823
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=1440
+      - DATABASE_URL=sqlite:///./estateflow.db
+    volumes:
+      - estateflow_data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  estateflow_data:
+    driver: local

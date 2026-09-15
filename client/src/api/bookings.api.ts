@@ -24,7 +24,7 @@ export const bookingsApi = {
 
   /** Create Razorpay payment order for a booking */
   createPaymentOrder: async (bookingId: number): Promise<{
-    mode: 'live' | 'unconfigured';
+    mode: 'live' | 'unconfigured' | 'demo';
     razorpay_order_id: string;
     razorpay_key_id: string;
     amount: number;

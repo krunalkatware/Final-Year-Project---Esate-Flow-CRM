@@ -12,6 +12,20 @@ import {
 import { adminCRMApi } from '../../../api/admin-crm.api';
 import { toast } from '../../../contexts/ToastContext';
 
+/** Append the stored JWT token as ?token= so the backend can
+ *  authenticate browser-tab file requests (where Auth headers aren't sent). */
+function buildAuthedFileUrl(fileUrl: string): string {
+  if (!fileUrl) return fileUrl;
+  // Keys must match what axios.ts interceptor reads (in priority order)
+  const token =
+    localStorage.getItem('admin_access_token') ||
+    localStorage.getItem('estateflow_admin_access_token') ||
+    localStorage.getItem('access_token') || '';
+  if (!token) return fileUrl;
+  const sep = fileUrl.includes('?') ? '&' : '?';
+  return `${fileUrl}${sep}token=${encodeURIComponent(token)}`;
+}
+
 type TabKey = 'overview' | 'bookings' | 'visits' | 'documents' | 'payments';
 
 export default function CustomerDetailPage() {
@@ -685,18 +699,17 @@ export default function CustomerDetailPage() {
                     <div className="flex items-center justify-between pt-1 gap-2">
                       <div className="flex items-center gap-1.5">
                         {doc.file_url && (
-                          <a
-                            href={doc.file_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button
+                            type="button"
+                            onClick={() => window.open(buildAuthedFileUrl(doc.file_url), '_blank', 'noopener,noreferrer')}
                             className="btn btn-outline btn-xs gap-1"
                           >
                             <ExternalLink className="w-3 h-3" /> Preview
-                          </a>
+                          </button>
                         )}
                         {doc.file_url && (
                           <a
-                            href={doc.file_url}
+                            href={buildAuthedFileUrl(doc.file_url)}
                             download={doc.file_name}
                             className="btn btn-ghost btn-xs gap-1 text-text-muted hover:text-text-primary"
                           >

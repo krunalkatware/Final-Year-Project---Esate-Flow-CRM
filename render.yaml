@@ -2,7 +2,7 @@ services:
   # ── 1. Backend Web Service (FastAPI / Python) ──────────────────────────────
   - type: web
     name: estateflow-backend
-    runtime: python
+    env: python
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python -m uvicorn server.main:app --host 0.0.0.0 --port $PORT
@@ -23,9 +23,10 @@ services:
           property: connectionString
 
   # ── 2. Frontend Static Site (React / Vite) ─────────────────────────────────
-  # Static sites on Render are always free — no 'plan' field needed
-  - type: static
+  # Static sites use env: static (not type: static) — no plan field
+  - type: web
     name: estateflow-frontend
+    env: static
     rootDir: client
     buildCommand: npm install && npm run build
     staticPublishPath: dist

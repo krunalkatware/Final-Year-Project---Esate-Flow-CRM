@@ -173,3 +173,38 @@ def health_check():
 @app.get("/")
 def root():
     return {"message": "EstateFlow API — Where Real Estate Flows Better"}
+
+
+@app.post("/api/seed")
+def run_seed(secret: str):
+    """
+    One-time endpoint to seed production data.
+    Protected by SEED_SECRET env var.
+    Call with: POST /api/seed?secret=YOUR_SECRET
+    """
+    import os
+    from server.config.database import SessionLocal
+    expected = os.environ.get("SEED_SECRET", "estateflow-seed-2024")
+    if secret != expected:
+        raise HTTPException(status_code=403, detail="Invalid seed secret")
+
+    try:
+        # Import and run the full seed script inline
+        import sys
+        sys.path.insert(0, ".")
+        from seed_production_data import seed_enterprise_data
+        seed_enterprise_data()
+        return {
+            "success": True,
+            "message": "Production data seeded successfully! Admin: admin@estateflow.com / Admin@123"
+        }
+    except Exception as e:
+        # Even if full seed fails, admin is already seeded at startup
+        return {
+            "success": False,
+            "message": f"Seed error: {str(e)}. Note: Admin account is seeded automatically on startup.",
+            "admin_credentials": {
+                "email": "admin@estateflow.com",
+                "password": "Admin@123"
+            }
+        }

@@ -23,6 +23,8 @@ services:
           property: connectionString
 
   # ── 2. Frontend Static Site (React / Vite) ─────────────────────────────────
+  # NOTE: After the backend deploys, update VITE_API_URL to the actual
+  # backend URL in the Render dashboard: https://your-backend-name.onrender.com/api
   - type: web
     name: estateflow-frontend
     runtime: static
@@ -36,11 +38,7 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: estateflow-backend
-          property: host
-        value: https://${host}/api
+        value: https://estateflow-backend.onrender.com/api
 
 # ── 3. Managed PostgreSQL Database ──────────────────────────────────────────
 databases:

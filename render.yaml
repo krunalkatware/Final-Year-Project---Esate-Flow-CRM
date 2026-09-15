@@ -36,7 +36,7 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        value: https://estateflow-backend.onrender.com/api
+        value: https://estateflow-backend-zj6b.onrender.com/api
 
 # ── 3. Managed PostgreSQL Database ──────────────────────────────────────────
 databases:

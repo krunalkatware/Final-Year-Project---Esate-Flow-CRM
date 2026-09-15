@@ -23,12 +23,9 @@ services:
           property: connectionString
 
   # ── 2. Frontend Static Site (React / Vite) ─────────────────────────────────
-  # NOTE: After the backend deploys, update VITE_API_URL to the actual
-  # backend URL in the Render dashboard: https://your-backend-name.onrender.com/api
-  - type: web
+  # Static sites on Render are always free — no 'plan' field needed
+  - type: static
     name: estateflow-frontend
-    runtime: static
-    plan: free
     rootDir: client
     buildCommand: npm install && npm run build
     staticPublishPath: dist

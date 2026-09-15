@@ -1,4 +1,5 @@
-from typing import Optional
+from typing import Optional, Union, Any
+from pydantic import BaseModel
 from fastapi import APIRouter, Depends, HTTPException, Query, Body
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import desc, func, or_
@@ -21,6 +22,17 @@ from server.models.lead import Lead, LeadStage, LeadSource, LeadPriority
 from server.models.property import Property
 from server.models.city import City
 from server.models.notification import Notification, NotificationType
+
+
+class DocumentRejectSchema(BaseModel):
+    rejection_reason: Optional[str] = None
+    reason: Optional[str] = None
+
+
+class DocumentVerifySchema(BaseModel):
+    notes: Optional[str] = None
+    verification_notes: Optional[str] = None
+
 
 router = APIRouter(prefix="/api/admin/customers", tags=["Admin Customer CRM"])
 

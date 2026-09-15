@@ -1,0 +1,50 @@
+services:
+  # ── 1. Backend Web Service (FastAPI / Python) ──────────────────────────────
+  - type: web
+    name: estateflow-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn server.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: PAYMENT_MODE
+        value: demo
+      - key: DATABASE_URL
+        fromDatabase:
+          name: estateflow-db
+          property: connectionString
+
+  # ── 2. Frontend Static Site (React / Vite) ─────────────────────────────────
+  - type: web
+    name: estateflow-frontend
+    runtime: static
+    plan: free
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: estateflow-backend
+          property: host
+        value: https://${host}/api
+
+# ── 3. Managed PostgreSQL Database ──────────────────────────────────────────
+databases:
+  - name: estateflow-db
+    databaseName: estateflow
+    user: estateflow
+    plan: free
